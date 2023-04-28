@@ -1,4 +1,4 @@
-package com.human.java.vo;
+package com.human.java.domain;
 
 public class CompanyReviewVO {
 
