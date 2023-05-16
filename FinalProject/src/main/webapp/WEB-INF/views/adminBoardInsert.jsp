@@ -11,7 +11,7 @@
 //     String 전혜진꺼 = null;
     
     String userId = null;
-    String userName = null;
+    String userNick = null;
     		if(session.getAttribute("dee") != null 
     		|| session.getAttribute("yennie") != null 
     		|| session.getAttribute("mina0130") != null 
@@ -25,8 +25,8 @@
     } else if ( session.getAttribute("userId") != null) {
     	userId = (String) session.getAttribute("userId"); 
     	
-    } else if (session.getAttribute("userName") != null) {
-    	userName = (String) session.getAttribute("userName");
+    } else if (session.getAttribute("userNick") != null) {
+    	userNick = (String) session.getAttribute("userNick");
     }
 
     %> 
@@ -109,7 +109,7 @@
           <% } else {// else안에 if %>
           <li class="dropdown"><a href="#"><span>Get online</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
-              <li><a href="myPage"><%=userName%> 페이지</a></li>
+              <li><a href="myPage"><%=userNick%> 페이지</a></li>
               <li><a href="logoutAction">로그아웃</a></li>
             </ul>
           </li>

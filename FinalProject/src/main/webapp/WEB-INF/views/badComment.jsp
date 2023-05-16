@@ -11,7 +11,7 @@
 //     String 전혜진꺼 = null;
     
     String userId = null;
-    String userName = null;
+    String userNick = null;
     		if(session.getAttribute("dee") != null 
     		|| session.getAttribute("yennie") != null 
     		|| session.getAttribute("mina0130") != null 
@@ -25,8 +25,8 @@
     } else if ( session.getAttribute("userId") != null) {
     	userId = (String) session.getAttribute("userId"); 
     	
-    } else if (session.getAttribute("userName") != null) {
-    	userName = (String) session.getAttribute("userName");
+    } else if (session.getAttribute("userNick") != null) {
+    	userNick = (String) session.getAttribute("userNick");
     }
 
     %> 
@@ -246,7 +246,6 @@
 		    	
 		    	</c:choose>
     
-		<%--     <c:forEach var="board" begin="1" end="총게시물 / 한페이지당 몇개 보여줄건지 "> --%>
 		    <c:forEach var="i" begin="${startPageNum }" end="${endPageNum }" step="1">
 		    
 				<c:choose>
@@ -396,9 +395,6 @@ function insertBoard() {
 	 window.location.href = 'adminBoardInsert'
 }
 
-// function comment() {
-// 	document.getElementById('frm').submit();
-// }
 
 function checkonlyone(element) {
   
@@ -417,15 +413,12 @@ $(function () {
 	 $('input[type="checkbox"][name="badId"]').click(function() {
 		
 		var checked = $('input[name=badId]:checked').val();
-		console.log(checked)
 		$('#hiddenReportId').val(checked);
-		console.log($('#hiddenReportId').val())
 		
 		if ($('#hiddenReportId').val() != '') {
 			
 		$('#cancelBadComment').click(function () {
 			
-		console.log($('#hiddenReportId').val())
 		$('#frm').attr("action", "reportRemove")
 		$('#frm').submit();
 			
@@ -440,20 +433,7 @@ $(function () {
 			
 	})
 		
-		
-// 		$('#reportTableTrBot').on('click', function(){
-			
-// 			alert('눌림')
-// 			console.log($(this).parent().parent().find('input')[0].innerHTML );
-			
-			
-// 			$('#hiddenReportId').val($(this).parent().parent().find('td')[0].innerHTML)
-// 			console.log($('#hiddenReportId').val())
-			
-		
-// // 			$('#frm').submit();
-	
-// 		})
+
 })
 
 
