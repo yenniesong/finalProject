@@ -2,8 +2,7 @@
     pageEncoding="UTF-8"%>
     <%@page import="java.io.PrintWriter"%>
     <%@page import="com.human.java.*"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-    <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%--     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> --%>
     <%
     String dee = null;
     String yennie = null;
@@ -12,7 +11,7 @@
 //     String 전혜진꺼 = null;
     
     String userId = null;
-    String name = null;
+    String userName = null;
     		if(session.getAttribute("dee") != null 
     		|| session.getAttribute("yennie") != null 
     		|| session.getAttribute("mina0130") != null 
@@ -26,6 +25,8 @@
     } else if ( session.getAttribute("userId") != null) {
     	userId = (String) session.getAttribute("userId"); 
     	
+    } else if (session.getAttribute("userName") != null) {
+    	userName = (String) session.getAttribute("userName");
     }
 
     %> 
@@ -35,15 +36,14 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-  <title>Soupie - 공지사항</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+  <title>Soupie - FAQs</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
   <!-- Favicons -->
 	<link href="../resources/img/soupie.png" rel="icon">
   <link href="../resources/img/soupie.png" rel="apple-touch-icon">
-
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
@@ -65,11 +65,12 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
+  
 </head>
 
 <body>
 
-  <!-- ======= Header ======= -->
+    <!-- ======= Header ======= -->
   <header id="header" class="fixed-top header-inner-pages">
     <div class="container d-flex align-items-center">
 
@@ -108,7 +109,7 @@
           <% } else {// else안에 if %>
           <li class="dropdown"><a href="#"><span>Get online</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
-              <li><a href="myPage"><%=name%> 페이지</a></li>
+              <li><a href="myPage"><%=userName%> 페이지</a></li>
               <li><a href="logoutAction">로그아웃</a></li>
             </ul>
           </li>
@@ -132,122 +133,74 @@
           <li><a href="main">Home</a></li>
           <li>Announcements</li>
         </ol>
-        <h2>공지 사항</h2>
+        <h2>FAQs</h2>
 
       </div>
     </section><!-- End Breadcrumbs -->
-
+	<p class="faq_heading">Soupie안에서 궁금한 점이 있으신가요? <br>
+	아래의 자주 묻는 질문 FAQs 리스트를 확인 해주세요!</p>
 	
 
-
-<div class="board_wrap">
-		
-		<div class="board_list_wrap">
-			  	<div class="table-responsive" id="tableH" >
-         <table class="table table-striped table-sm text-center table-hover" id="tableid">
-          <thead>
-            <tr id="tabletr">
-              <th scope="col">글번호</th>
-              <th scope="col">제목</th>
-              <th scope="col">글쓴이</th>
-              <th scope="col">작성일</th>
-              <th scope="col">조회</th>
-              
-            </tr>
-          </thead>         	
-          
-          <tbody>
-          <c:forEach items="${list}" var="board">
-        	  <tr id="tabletr">
-		      	<td scope="col">${board.postId}</td>
-		        <td scope="col" style="cursor: pointer;" class="postView" >${board.postTitle}</td>
-		        <td scope="col">관리자</td>
-		        <td scope="col">${board.postDate}</td>
-		        <td scope="col">${board.postCnt}</td>
-		       </tr>
-		        
-          	 </c:forEach>       
-          </tbody>
-                          	  
-           </table>
-     	 </div>
-		
-		</div>
-		
-     	<% if(userId != null){ if(dee.equals("dee") || yennie.equals("yennie") || mina0130.equals("mina0130") || yeon.equals("yeon")) { // >>>>> 관리자로 로그인 %>
-		<div class="bt_wrap">
-			<button type="button" class="writePost" id="insertBtn" onclick="insertBoard()" >글쓰기</button>
-		</div>
-		<% }%>
-		<% }%>
-		
-		<div class="board_page">
-		
-	<nav aria-label="Page navigation example" class="pageList">
-		<ul class="pagination" id="pageUl">
-		
-			<!-- 이전 그룹 번호로 생성-->		
-		<c:choose>
-			<c:when test="${startGroupNum == '0'}">
-	    		<li class="page-item disabled" id="page-item List">
-	      			<a class="page-link" href="adminBoard.do" aria-label="Previous">
-	        			<span aria-hidden="true">&laquo;</span>
-	      			</a>
-	    		</li>
-	    	</c:when>		
-			<c:otherwise>
-	    		<li class="page-item" id="page-item List">
-	      			<a class="page-link" href="adminBoard.do?groupNum=${startGroupNum}&pageNum=${(startGroupNum-1)*5+1}" aria-label="Previous">
-	        			<span aria-hidden="true">&laquo;</span>
-	      			</a>
-	    		</li>
-	    	</c:otherwise>
-    	
-    	</c:choose>
-    
-<%--     <c:forEach var="board" begin="1" end="총게시물 / 한페이지당 몇개 보여줄건지 "> --%>
-    <c:forEach var="i" begin="${startPageNum }" end="${endPageNum }" step="1">
-    
-		<c:choose>
-			<c:when test="${param.pageNum eq i }">
-						<li class="page-item pageClickClass active" aria-current="page"><a class="page-link" id="pageClicked" href="adminBoard.do?groupNum=${startGroupNum+1 }&pageNum=${i}">${i}</a></li>
-			</c:when>
-			<c:otherwise>
-	    		<li class="page-item pageClickClass" aria-current="page"><a class="page-link" id="pageClicked" href="adminBoard.do?groupNum=${startGroupNum+1 }&pageNum=${i}">${i}</a></li>
-			</c:otherwise>
-		</c:choose>   
-    
-    </c:forEach>
-
-	   	  
-		<!--  이후 그룹 번호로 생성 -->
-    <c:choose>
-		<c:when test="${endGroupNum == 0}">
-	   		<li class="page-item disabled">
-	    	 		<a class="page-link" href="adminBoard.do" aria-label="Next">
-		       			<span aria-hidden="true">&raquo;</span>
-	     			</a>
-	   		</li>
-    	</c:when>
-		<c:otherwise>
-    		<li class="page-item" id="page-item List">
-      			<a class="page-link" href="adminBoard.do?groupNum=${endGroupNum }&pageNum=${(endGroupNum-1)*5+1}" aria-label="Next">
-        			<span aria-hidden="true">&raquo;</span>
-      			</a>
-    		</li>
-    	</c:otherwise>
-    	
-    	</c:choose>
-    	  
-  		</ul>
-	</nav>
-
-		</div>
-		
 	
-	</div>
-		
-    
+	
+	
+	<div class=board_accordion>
+	
+ <div class="accordion accordion-flush" id="accordionFlushExample"  >
+  <div class="accordion-item" >
+    <h2 class="accordion-header" id="flush-headingOne">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" 
+      aria-expanded="false" aria-controls="flush-collapseOne">
+        [서비스오류] Soupie 서비스 이용 중 오류가 발생해요.
+      </button>
+    </h2>
+    <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+      <div class="accordion-body">
+      <strong>인프런은 구글 크롬 브라우저에 최적화되어 있어요.</strong><br> 
+        	강의 시청, 결제 등 서비스 이용 중 오류가 발생할 경우 크롬 브라우저에서 다시 진행해 주세요.<br><br>
+			※ 혹시 크롬 브라우저에서도 오류가 발생한다면 아래 안내사항을 체크해보세요.<br><br>
+			<strong>🕐 크롬 시크릿 모드에서 재실행합니다.</strong><br> 
+			시크릿 모드에서 정상 작동한다면, 확장 프로그램의 문제일 가능성이 높습니다.<br>		
+			<span style="font-style: italic;">※  시크릿 모드 경로 : 크롬 브라우저 오른쪽 상단 더보기 ( : )클릭 - 새 시크릿 창</span><br><br>
+			<strong>🕑 강력 새로고침 후 재실행합니다.</strong><br>
+			새로운 기능 배포 및 버전 업데이트로 인한 일시적 오류일 수 있습니다.<br>
+			<span style="font-style: italic;">※ 강력 새로고침 단축키 : [윈도우 Ctrl + Shift + R] / [맥 Cmd + Shift + R]</span>
+    </div>
+  </div>
+ </div>
+  
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="flush-headingTwo">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+       [탈퇴] Soupie 탈퇴는 어떻게 하나요?
+      </button>
+    </h2>
+    <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+      <div class="accordion-body">
+      <strong>마이 페이지 > '탈퇴'가 가능해요.</strong><br><br>
+
+		※ 탈퇴할 경우 해당 계정의 모든 데이터가 삭제되며 복구가 불가능하니 신중히 결정하시는 것을 권장 드려요.
+    </div>
+  </div>
+  </div>
+  
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="flush-headingThree">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+       [미정] 아직 미정
+      </button>
+    </h2>
+    <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+      <div class="accordion-body">
+      <strong>아직 모릅니다.</strong>
+    </div>
+  </div>
+</div>   
+ 	   
+ 	   	   
+ 	   
+</div>
+   </div> 
 	<form action="updateCnt" method="post" id="frm">   
 	 
 		<input type="hidden" name="postId" id="hiddenPostId" value="">
@@ -338,7 +291,7 @@
 
   <!-- Vendor JS Files -->
   <script src="resources/assets/vendor/aos/aos.js"></script>
-  <script src="resources/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!--   <script src="resources/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script> -->
   <script src="resources/assets/vendor/glightbox/js/glightbox.min.js"></script>
   <script src="resources/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
   <script src="resources/assets/vendor/php-email-form/validate.js"></script>
@@ -349,41 +302,40 @@
   <script src="resources/assets/js/main.js"></script>
 
 </body>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js" integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js" integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ" crossorigin="anonymous"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js" ></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js"></script> -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js" ></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js" ></script>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <script type="text/javascript">
 
-function insertBoard() {
-	 window.location.href = 'adminBoardInsert'
-}
+// function insertBoard() {
+// 	 window.location.href = 'adminBoardInsert'
+// }
 
+// function comment() {
+// 	document.getElementById('frm').submit();
+// }
 
 $(function () {
  
 		$('#tableH').on('click','.postView', function(){
-
-			console.log($(this).prev().text());
-			console.log($(this).text());
-			console.log($(this).next().next().text());
-			console.log($(this).next().next().next().text());
-										
-			$('#hiddenPostId').val( $(this).prev().text() );
-			$('#hiddenPostTitle').val($(this).text())
-			$('#hiddenPostDate').val($(this).next().next().text())
-			$('#hiddenPostICnt').val($(this).next().next().next().text())
+		
+			console.log($(this).parent().parent().find('td')[0].innerHTML );
+			console.log($(this).parent().parent().find('td')[1].innerHTML );
+			console.log($(this).parent().parent().find('td')[3].innerHTML );
+			console.log($(this).parent().parent().find('td')[4].innerHTML );
+			
+			$('#hiddenPostId').val($(this).parent().parent().find('td')[0].innerHTML)
+			$('#hiddenPostTitle').val($(this).parent().parent().find('td')[1].innerHTML)
+			$('#hiddenPostDate').val($(this).parent().parent().find('td')[3].innerHTML)
+			$('#hiddenPostICnt').val($(this).parent().parent().find('td')[4].innerHTML)
 		
 			$('#frm').submit();
 	
 		})
-		
-		
-		
-		
 })
-		
-
-
 
 
 </script>

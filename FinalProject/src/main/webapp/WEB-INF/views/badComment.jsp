@@ -4,11 +4,29 @@
     <%@page import="com.human.java.*"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <%
-    String id = null;
-    String name = null;
-    if(session.getAttribute("userid") != null) {
-  	  id = (String) session.getAttribute("userid"); 
-  	name = (String) session.getAttribute("username"); 
+    String dee = null;
+    String yennie = null;
+    String mina0130 = null;
+    String yeon = null;
+//     String 전혜진꺼 = null;
+    
+    String userId = null;
+    String userName = null;
+    		if(session.getAttribute("dee") != null 
+    		|| session.getAttribute("yennie") != null 
+    		|| session.getAttribute("mina0130") != null 
+    		|| session.getAttribute("yeon") != null) {
+    	
+    	dee = (String) session.getAttribute("dee"); 
+    	yennie = (String) session.getAttribute("yennie"); 
+    	mina0130 = (String) session.getAttribute("mina0130"); 
+    	yeon = (String) session.getAttribute("yeon");
+  	  
+    } else if ( session.getAttribute("userId") != null) {
+    	userId = (String) session.getAttribute("userId"); 
+    	
+    } else if (session.getAttribute("userName") != null) {
+    	userName = (String) session.getAttribute("userName");
     }
 
     %> 
@@ -72,7 +90,7 @@
 <!--           <li><a class="nav-link scrollto" href="#team">Team</a></li> -->
 <!--           <li><a class="nav-link scrollto" href="#contact">Contact</a></li> -->
            <%
-    	if (id == null) {
+    	if (userId == null) {
     	
     		%>
           <li class="dropdown"><a href="#"><span>Get online</span> <i class="bi bi-chevron-down"></i></a>
@@ -82,7 +100,7 @@
             </ul>
           </li>
         <% } else {  %>
-          <% if( name.equals("코코딩") ) { %>               
+          <% if( dee.equals("dee") || yennie.equals("yennie") || mina0130.equals("mina0130") || yeon.equals("yeon") ) { %>               
           <li class="dropdown"><a href="#"><span>Get online</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
               <li><a href="badComment">신고글 관리페이지</a></li>
@@ -369,8 +387,8 @@
   <script src="resources/assets/js/main.js"></script>
 
 </body>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js" integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js" integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js" ></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <script type="text/javascript">
 

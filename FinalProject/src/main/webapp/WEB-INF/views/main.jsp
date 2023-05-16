@@ -5,12 +5,29 @@
     
     <%
     
-//     session.setAttribute("userid",  ); 강제로 세션에 관리자 담아서 사용
-    String id = null;
-    String name = null;
-    if(session.getAttribute("userid") != null) {
-  	  id = (String) session.getAttribute("userid"); 
-  	name = (String) session.getAttribute("username"); 
+    String dee = null;
+    String yennie = null;
+    String mina0130 = null;
+    String yeon = null;
+//     String 전혜진꺼 = null;
+    
+    String userId = null;
+    String userName = null;
+    		if(session.getAttribute("dee") != null 
+    		|| session.getAttribute("yennie") != null 
+    		|| session.getAttribute("mina0130") != null 
+    		|| session.getAttribute("yeon") != null) {
+    	
+    	dee = (String) session.getAttribute("dee"); 
+    	yennie = (String) session.getAttribute("yennie"); 
+    	mina0130 = (String) session.getAttribute("mina0130"); 
+    	yeon = (String) session.getAttribute("yeon");
+  	  
+    } else if ( session.getAttribute("userId") != null) {
+    	userId = (String) session.getAttribute("userId"); 
+    	
+    } else if (session.getAttribute("userName") != null) {
+    	userName = (String) session.getAttribute("userName");
     }
 
     %> 
@@ -76,7 +93,7 @@
           <li><a class="nav-link scrollto" href="#team">Team</a></li>
 <!--           <li><a class="nav-link scrollto" href="#contact">Contact</a></li> -->
            <%
-    	if (id == null) {
+    	if (userId == null) {
     	
     		%>
           <li class="dropdown"><a href="#"><span>Get online</span> <i class="bi bi-chevron-down"></i></a>
@@ -86,7 +103,7 @@
             </ul>
           </li>
         <% } else { %>
-        <% if (name.equals("코코딩")) { %>
+        <% if (dee.equals("dee") || yennie.equals("yennie") || mina0130.equals("mina0130") || yeon.equals("yeon") ) { %>
           
           <li class="dropdown" id="getonline"><a href="#"><span>Get Online</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
@@ -98,7 +115,7 @@
           
            <li class="dropdown" id="getonline"><a href="#"><span>Get Online</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
-              <li><a href="#"><%=name %>페이지</a></li>
+              <li><a href="#"><%=userName %>페이지</a></li>
               <li><a href="logoutAction">로그아웃</a></li>
             </ul>
           </li>
