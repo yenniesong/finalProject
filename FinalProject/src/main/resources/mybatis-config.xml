@@ -4,9 +4,17 @@
   "https://mybatis.org/dtd/mybatis-3-config.dtd">
   
   <configuration>
+  
   	<typeAliases>
+  	
 		<typeAlias type="com.human.java.domain.QnAVO" alias="qna"/>
+		<typeAlias alias="admin" type="com.human.java.domain.AdminVO"/>
+		
   	</typeAliases>
+  	
+  	
+  	
+	
   </configuration>
   
   
