@@ -1,32 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@page import="java.io.PrintWriter"%>
-    <%@page import="com.human.java.*"%>
+    <%@page import="com.human.soup.*"%>
 <%--     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> --%>
     <%
-    String dee = null;
-    String yennie = null;
-    String mina0130 = null;
-    String yeon = null;
-//     String 전혜진꺼 = null;
-    
-    String userId = null;
-    String userNick = null;
-    		if(session.getAttribute("dee") != null 
-    		|| session.getAttribute("yennie") != null 
-    		|| session.getAttribute("mina0130") != null 
-    		|| session.getAttribute("yeon") != null) {
-    	
-    	dee = (String) session.getAttribute("dee"); 
-    	yennie = (String) session.getAttribute("yennie"); 
-    	mina0130 = (String) session.getAttribute("mina0130"); 
-    	yeon = (String) session.getAttribute("yeon");
-  	  
-    } else if ( session.getAttribute("userId") != null) {
-    	userId = (String) session.getAttribute("userId"); 
-    	
-    } else if (session.getAttribute("userName") != null) {
-    	userNick = (String) session.getAttribute("userName");
+    String id = null;
+    String name = null;
+    if(session.getAttribute("userid") != null) {
+  	  id = (String) session.getAttribute("userid"); 
+  	name = (String) session.getAttribute("username"); 
     }
 
     %> 
@@ -90,7 +72,7 @@
 <!--           <li><a class="nav-link scrollto" href="#team">Team</a></li> -->
 <!--           <li><a class="nav-link scrollto" href="#contact">Contact</a></li> -->
            <%
-    	if (userId == null) {
+    	if (id == null) {
     	
     		%>
           <li class="dropdown"><a href="#"><span>Get online</span> <i class="bi bi-chevron-down"></i></a>
@@ -99,7 +81,7 @@
               <li><a href="join">회원가입</a></li>
             </ul>
           </li>
-        <% } else {  if (dee.equals("dee") || yennie.equals("yennie") || mina0130.equals("mina0130") || yeon.equals("yeon")) { %>
+        <% } else {  if (name.equals("코코딩")) { %>
           <li class="dropdown"><a href="#"><span>Get online</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
               <li><a href="badComment">신고글 관리페이지</a></li>
@@ -109,7 +91,7 @@
           <% } else {// else안에 if %>
           <li class="dropdown"><a href="#"><span>Get online</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
-              <li><a href="myPage"><%=userNick%> 페이지</a></li>
+              <li><a href="myPage"><%=name%> 페이지</a></li>
               <li><a href="logoutAction">로그아웃</a></li>
             </ul>
           </li>
@@ -144,9 +126,10 @@
 	
 	
 	
-	<div class=board_accordion>
+<div class=board_accordion>
 	
- <div class="accordion accordion-flush" id="accordionFlushExample"  >
+<div class="accordion accordion-flush" id="accordionFlushExample"  >
+ 
   <div class="accordion-item" >
     <h2 class="accordion-header" id="flush-headingOne">
       <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" 
@@ -195,23 +178,107 @@
       <strong>아직 모릅니다.</strong>
     </div>
   </div>
+</div> 
+
+<div class="accordion-item">
+    <h2 class="accordion-header" id="flush-headingFour">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
+       [미정] 아직 미정
+      </button>
+    </h2>
+    <div id="flush-collapseFour" class="accordion-collapse collapse" aria-labelledby="flush-headingFour" data-bs-parent="#accordionFlushExample">
+      <div class="accordion-body">
+      <strong>아직 모릅니다.</strong>
+    </div>
+  </div>
 </div>   
+
+<div class="accordion-item">
+    <h2 class="accordion-header" id="flush-headingFive">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFive" aria-expanded="false" aria-controls="flush-collapseFive">
+       [미정] 아직 미정
+      </button>
+    </h2>
+    <div id="flush-collapseFive" class="accordion-collapse collapse" aria-labelledby="flush-headingFive" data-bs-parent="#accordionFlushExample">
+      <div class="accordion-body">
+      <strong>아직 모릅니다.</strong>
+    </div>
+  </div>
+</div>   
+
+<div class="accordion-item">
+    <h2 class="accordion-header" id="flush-headingSix">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseSix" aria-expanded="false" aria-controls="flush-collapseSix">
+       [미정] 아직 미정
+      </button>
+    </h2>
+    <div id="flush-collapseSix" class="accordion-collapse collapse" aria-labelledby="flush-headingSix" data-bs-parent="#accordionFlushExample">
+      <div class="accordion-body">
+      <strong>아직 모릅니다.</strong>
+    </div>
+  </div>
+</div>   
+
+<div class="accordion-item">
+    <h2 class="accordion-header" id="flush-headingSeven">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseSeven" aria-expanded="false" aria-controls="flush-collapseSeven">
+       [미정] 아직 미정
+      </button>
+    </h2>
+    <div id="flush-collapseSeven" class="accordion-collapse collapse" aria-labelledby="flush-headingSeven" data-bs-parent="#accordionFlushExample">
+      <div class="accordion-body">
+      <strong>아직 모릅니다.</strong>
+    </div>
+  </div>
+</div>     
  	   
- 	   	   
+<div class="accordion-item">
+    <h2 class="accordion-header" id="flush-headingEight">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseEight" aria-expanded="false" aria-controls="flush-collapseEight">
+       [미정] 아직 미정
+      </button>
+    </h2>
+    <div id="flush-collapseEight" class="accordion-collapse collapse" aria-labelledby="flush-headingEight" data-bs-parent="#accordionFlushExample">
+      <div class="accordion-body">
+      <strong>아직 모릅니다.</strong>
+    </div>
+  </div>
+</div> 
+
+<div class="accordion-item">
+    <h2 class="accordion-header" id="flush-headingNine">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseNine" aria-expanded="false" aria-controls="flush-collapseNine">
+       [미정] 아직 미정
+      </button>
+    </h2>
+    <div id="flush-collapseNine" class="accordion-collapse collapse" aria-labelledby="flush-headingNine" data-bs-parent="#accordionFlushExample">
+      <div class="accordion-body">
+      <strong>아직 모릅니다.</strong>
+    </div>
+  </div>
+</div> 
+
+<div class="accordion-item">
+    <h2 class="accordion-header" id="flush-headingTen">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTen" aria-expanded="false" aria-controls="flush-collapseTen">
+       [미정] 아직 미정
+      </button>
+    </h2>
+    <div id="flush-collapseTen" class="accordion-collapse collapse" aria-labelledby="flush-headingTen" data-bs-parent="#accordionFlushExample">
+      <div class="accordion-body">
+      <strong>아직 모릅니다.</strong>
+    </div>
+  </div>
+</div> 	   	   
  	   
 </div>
-   </div> 
-	<form action="updateCnt" method="post" id="frm">   
-	 
-		<input type="hidden" name="postId" id="hiddenPostId" value="">
-		<input type="hidden" name="postTitle" id="hiddenPostTitle" value="">
-		<input type="hidden" name="postDate" id="hiddenPostDate" value="">
-		<input type="hidden" name="postCnt" id="hiddenPostICnt" value="">
-
-	</form>
-		
-		
-		
+   </div>
+   
+   <div>
+   <ul id="paginationFAQ">
+   
+   </ul>
+   </div>
 		
   </main><!-- End #main -->
 
@@ -310,32 +377,52 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <script type="text/javascript">
 
-// function insertBoard() {
-// 	 window.location.href = 'adminBoardInsert'
-// }
+const itemsPerPage = 5; // 페이지당 아이템 수
+var currentPage = 1; // 현재 페이지
+const data = Array.from(document.querySelectorAll('#accordionFlushExample .accordion-item')); // 화면에 있는 데이터 배열
+const totalPages = Math.ceil(data.length / itemsPerPage); // 총 페이지 수
 
-// function comment() {
-// 	document.getElementById('frm').submit();
-// }
+console.log("data : "+data)
+console.log("totalPages : "+totalPages)
 
-$(function () {
- 
-		$('#tableH').on('click','.postView', function(){
-		
-			console.log($(this).parent().parent().find('td')[0].innerHTML );
-			console.log($(this).parent().parent().find('td')[1].innerHTML );
-			console.log($(this).parent().parent().find('td')[3].innerHTML );
-			console.log($(this).parent().parent().find('td')[4].innerHTML );
-			
-			$('#hiddenPostId').val($(this).parent().parent().find('td')[0].innerHTML)
-			$('#hiddenPostTitle').val($(this).parent().parent().find('td')[1].innerHTML)
-			$('#hiddenPostDate').val($(this).parent().parent().find('td')[3].innerHTML)
-			$('#hiddenPostICnt').val($(this).parent().parent().find('td')[4].innerHTML)
-		
-			$('#frm').submit();
-	
-		})
-})
+
+
+function showPage(page) {
+  const startIndex = (page - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+
+  console.log("startIndex : "+startIndex)
+  console.log("endIndex : "+endIndex)
+  
+  // 현재 페이지에 해당하는 데이터를 화면에 표시
+  data.forEach(function(item, index) {
+    if (index >= startIndex && index < endIndex) {
+      item.style.display = 'block';
+    } else {
+      item.style.display = 'none';
+    }
+  });
+}
+
+function renderPagination() {
+  $('#paginationFAQ').empty();
+
+  for (let i = 1; i <= totalPages; i++) {
+    const activeClass = (i === currentPage) ? 'active' : '';
+    $('#paginationFAQ').append('<li><a class="' + activeClass + '" href="#">' + i + '</a></li>');
+  }
+
+  $('#paginationFAQ a').click(function(event) {
+    event.preventDefault();
+    currentPage = parseInt($(this).text());
+    showPage(currentPage);
+    renderPagination();
+  });
+}
+
+	// 초기 페이지 및 페이지네이션 렌더링
+	showPage(currentPage);
+	renderPagination();
 
 
 </script>

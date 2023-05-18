@@ -9,7 +9,7 @@
 # General
 --------------------------------------------------------------*/
 body {
-  font-family: "Open Sans", sans-serif;
+  font-family: Pretendard,-apple-system,BlinkMacSystemFont,system-ui,Roboto,Helvetica Neue,Segoe UI,Apple SD Gothic Neo,Noto Sans KR,Malgun Gothic,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,sans-serif;
   color: #444444;
 }
 
@@ -2698,21 +2698,73 @@ ul, li {
 	}
 	
 .board_accordion {
-	margin: 100px auto;
-    max-width: 900px;
+	margin: 25px auto;
+    max-width: 750px;
     padding: 0;
     box-sizing: inherit;
 }
 
-/* .accordion-button:focus { */
-/* 	color: white; */
-/* 	box-shadow: none; */
-/* 	background-color: #1dc078; */
-/* } */
+.faq_heading {
+	font-size: 1.2rem;
+	padding: 4rem;
+	display: block;
+	text-align: center;
+	font-weight: bold;
+	color: black;
+	line-height: 2;
+}
 
-/* .accordion-button:not(.collapsed) { */
-/* 	color: white; */
-/* 	background-color: #719a60; */
-/* } */
+.accordion-button:focus {
+	box-shadow: 0 0 0 0.25rem #a8d396;
+}
 
+.accordion-button:not(.collapsed) {
+	color: white;
+	background-color: #1dc078;
+}
+.accordion-button:not(.collapsed)::after {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23212529'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+}
+
+.accordion-body {
+	color: #4a4a4a;
+	font-size: 14px; 
+}
+
+#paginationFAQ {
+	display: flex;
+	justify-content: center;
+	margin-top: 80px;
+	font-weight: bold;
+	font-size: 16px; 
+	
+}
+
+#paginationFAQ li {
+	margin-right: 5px;
+	border: 2px solid #719a60;
+    width: 33px;
+    background-color:#fff;
+    border-radius: 50px;
+    
+}
+#paginationFAQ li a {
+	color: #719a60;
+    font-weight: 600;
+    width: 29px;
+    display: inline-block;
+    text-align: center;
+}
+
+#paginationFAQ li a:hover {
+	color: #fff;
+	width: 29px;
+}
+
+#paginationFAQ li:hover {
+	
+	background-color: #719a60;
+	border: 2px solid #719a60;
+	transition: 0.3s;
+}
 

@@ -13,15 +13,18 @@
     
     String userId = null;
     String userNick = null;
-    		if(session.getAttribute("dee") != null 
-    		|| session.getAttribute("yennie") != null 
-    		|| session.getAttribute("mina0130") != null 
-    		|| session.getAttribute("yeon") != null) {
-    	
-    	dee = (String) session.getAttribute("dee"); 
-    	yennie = (String) session.getAttribute("yennie"); 
-    	mina0130 = (String) session.getAttribute("mina0130"); 
-    	yeon = (String) session.getAttribute("yeon");
+    
+	if (session.getAttribute("dee") != null 
+	|| session.getAttribute("yennie") != null 
+	|| session.getAttribute("mina0130") != null 
+	|| session.getAttribute("yeon") != null) 
+	
+	{
+
+	   	dee = (String) session.getAttribute("dee"); 
+	   	yennie = (String) session.getAttribute("yennie"); 
+	   	mina0130 = (String) session.getAttribute("mina0130"); 
+	   	yeon = (String) session.getAttribute("yeon");
   	  
     } else if ( session.getAttribute("userId") != null) {
     	userId = (String) session.getAttribute("userId"); 
