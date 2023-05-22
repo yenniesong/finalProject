@@ -13,30 +13,46 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.human.java.*;
+//import com.fasterxml.jackson.annotation.JsonAlias;
+import com.human.java.dao.AdminDAO;
 import com.human.java.dao.AdminDaoImpl;
 import com.human.java.domain.*;
 import com.human.java.service.AdminService;
 import com.human.java.service.AdminServiceImpl;
 
+// java를 효율적이로 코딩하기 위해 필요한 구조가 mvc 디자인 패턴
+// M odel : 자바를 이용해서 db에 연결하는 과정에 대한 파일들, 로직
+// V iew : jsp, html, cssm js등 화면에 출력하고자 하는 파일, 페이지
+// C ontroller : 화면과 로직에 대해서 연결해주는 파일, 연결점
 @Controller
 public class AdminController {
-
+	
+	// @Autowired : 스프링의 빈 컨테이너 안에 있는 객체를 탐색해주는 키워드
+	// 빈 컨테이너 : servlet-context.xml 에서 만든 객체들에서 UserDao객체명을 가진 bean을 가져와서 쓴다
 	@Autowired
 	private AdminService adminService;
 	
+	// 우리가 매번 new를 통한 인스턴스 생성 혹은 싱글톤패턴을 만들 필요가 없어짐
+	
+	// controller : 화면과 로직에 대해서 연결해주는 파일
+	// getBookList : 화면에서 요청할 이름, 키워드, 호출이름
+	// return : 요청이 들어오면 보여줄 파일, 화면, 페이지
+	
+	// 로직없이 단순 화면 변경을 담당하는 맵핑 메소드
 	@RequestMapping("/{url}")
 	public String viewPage(@PathVariable String url) {
 
 		return url;
 	}
-	
+
+		
+	// ======================================================================//
 	
 	@RequestMapping("main.do")
 	public String mainList(AdminVO vo, Model model) {
 		
 		List<AdminVO> bList = adminService.getBoardList(vo);
-	
+		
 		model.addAttribute("list", bList);
 		
 		return "main";
@@ -72,51 +88,33 @@ public class AdminController {
 			) {
 		
 		
-		// 게시물 총 갯수
 		int totalRecCount = adminService.getTotalPage();
-		// vo 변수에 넣어주기
 		vo.setTotalRecCount(totalRecCount);
 		
-		// 총 갯수에 따른 페이지 총 갯수 (전체 게시물 / 10) -> 10씩 보여지게
 		vo.setPageTotalCount(totalRecCount / vo.getCountPerPage());
 		
 		if(totalRecCount%vo.getCountPerPage() > 0 ) { 
-			// 나눴을때 나머지가 있으면 페이지 한개 더 만들어서 10개가 다 없어도 게시물 나오게 +1 해줌
-			vo.setCountPerPage(vo.getCountPerPage()+1);
+			vo.setPageTotalCount(vo.getPageTotalCount()+1);
 		}
 		
-		// 전체 레코드를 검색해 온다면
-		// 현재 페이지 번호에 의한 레코드를 검색
-		// 한페이지에 표현할 게시글 수를 13로 잡았을 경우
-		// 1번 : 1~ 13 행
-		// 2번 : 14 ~ 26 행
-		// 3번 : 26 ~ 39 행
+	
 			
-		// 맨 처음 번호 (보여줄 게시글수 countPerPage)
 		int firstRow = (pageNum-1) * vo.getCountPerPage()+1; 
-		// 맨 마지막 번호
 		int endRow = pageNum * vo.getCountPerPage();
 		
 		vo.setFirstRow(firstRow);
 		vo.setEndRow(endRow);
 		
-		List<AdminVO> aList = adminService.getListPage(vo);
 		
-		// 페이지갯수 = 전체 데이터의 갯수 / 보여줄갯수
-		// pageTotalCount = 전체 데이터의 갯수 / 페이지별 보여줄 갯수
-		// pageTotalCount = totalRecCount /countPerPage
-		// 데이터베이스 담긴 적체 레코드 갯수
+		
+		List<AdminVO> aList = adminService.getListPage(vo);
 		int totalCountGroup = vo.getPageTotalCount() / vo.getTotalCountPageGroup();
 		
 		vo.setTotalCountGroup(totalCountGroup);
 		
 		if( ( vo.getPageTotalCount() % vo.getTotalCountPageGroup() ) > 0) {
 			vo.setTotalCountGroup(vo.getTotalCountGroup()+1);
-			// 100 / 13 = 7.xx 
-			// 99 / 13 = 7.xx
-			// 98 / 13 = 7.xx
-			// 97 / 13 = 7.xx
-			// 90 / 13 = 6.xx
+			
 		}
 				
 		model.addAttribute("list", aList);

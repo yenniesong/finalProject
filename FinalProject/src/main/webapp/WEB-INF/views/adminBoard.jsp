@@ -5,30 +5,32 @@
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
     <%
-    String dee = null;
-    String yennie = null;
-    String mina0130 = null;
-    String yeon = null;
-//     String 전혜진꺼 = null;
+    String admin = null;
+    String student = null;
+    String company = null;
+    String educator = null;
     
     String userId = null;
     String userNick = null;
-    		if(session.getAttribute("dee") != null 
-    		|| session.getAttribute("yennie") != null 
-    		|| session.getAttribute("mina0130") != null 
-    		|| session.getAttribute("yeon") != null) {
-    	
-    	dee = (String) session.getAttribute("dee"); 
-    	yennie = (String) session.getAttribute("yennie"); 
-    	mina0130 = (String) session.getAttribute("mina0130"); 
-    	yeon = (String) session.getAttribute("yeon");
-  	  
-    } else if ( session.getAttribute("userId") != null) {
-    	userId = (String) session.getAttribute("userId"); 
-    	
-    } else if (session.getAttribute("userNick") != null) {
-    	userNick = (String) session.getAttribute("userNick");
-    }
+    
+    if (session.getAttribute("admin") != null 
+    		|| session.getAttribute("student") != null 
+    		|| session.getAttribute("company") != null 
+    		|| session.getAttribute("educator") != null) 
+    		
+    		{
+
+    			admin = (String) session.getAttribute("admin"); 
+    			student = (String) session.getAttribute("student"); 
+    			company = (String) session.getAttribute("company"); 
+    			educator = (String) session.getAttribute("educator");
+    	  	  
+    	    } else if ( session.getAttribute("userId") != null) {
+    	    	userId = (String) session.getAttribute("userId"); 
+    	    	
+    	    } else if (session.getAttribute("userNick") != null) {
+    	    	userNick = (String) session.getAttribute("userNick");
+    	    }
 
     %> 
 <!DOCTYPE html>
@@ -50,16 +52,16 @@
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
-  <link href="resources/assets/vendor/aos/aos.css" rel="stylesheet">
-  <link href="resources/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="resources/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="resources/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="resources/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="resources/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-  <link href="resources/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="resources/vendor/aos/aos.css" rel="stylesheet">
+  <link href="resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="resources/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="resources/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="resources/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="resources/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="resources/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
   <!-- Template Main CSS File -->
-  <link href="resources/assets/css/style.css" rel="stylesheet">
+  <link href="resources/css/style.css" rel="stylesheet">
 
   <!-- =======================================================
   * Template Name: Arsha - v4.3.0
@@ -100,7 +102,7 @@
               <li><a href="join">회원가입</a></li>
             </ul>
           </li>
-        <% } else {  if (dee.equals("dee") || yennie.equals("yennie") || mina0130.equals("mina0130") || yeon.equals("yeon")) { %>
+        <% } else {  if (admin.equals("admin") ) { %>
           <li class="dropdown"><a href="#"><span>Get online</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
               <li><a href="badComment">신고글 관리페이지</a></li>
@@ -176,7 +178,7 @@
 		
 		</div>
 		
-     	<% if(userId != null){ if(dee.equals("dee") || yennie.equals("yennie") || mina0130.equals("mina0130") || yeon.equals("yeon")) { // >>>>> 관리자로 로그인 %>
+     	<% if(userId != null){ if(admin.equals("admin")) { // >>>>> 관리자로 로그인 %>
 		<div class="bt_wrap">
 			<button type="button" class="writePost" id="insertBtn" onclick="insertBoard()" >글쓰기</button>
 		</div>

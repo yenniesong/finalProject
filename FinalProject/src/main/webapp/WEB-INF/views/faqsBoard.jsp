@@ -4,12 +4,34 @@
     <%@page import="com.human.java.*"%>
 <%--     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> --%>
     <%
-    String id = null;
-    String name = null;
-    if(session.getAttribute("userid") != null) {
-  	  id = (String) session.getAttribute("userid"); 
-  	name = (String) session.getAttribute("username"); 
+    
+    String admin = null;
+    String student = null;
+    String company = null;
+    String educator = null;
+    
+    String userId = null;
+    String userNick = null;
+    
+	if (session.getAttribute("admin") != null 
+	|| session.getAttribute("student") != null 
+	|| session.getAttribute("company") != null 
+	|| session.getAttribute("educator") != null) 
+	
+	{
+
+		admin = (String) session.getAttribute("admin"); 
+		student = (String) session.getAttribute("student"); 
+		company = (String) session.getAttribute("company"); 
+		educator = (String) session.getAttribute("educator");
+  	  
+    } else if ( session.getAttribute("userId") != null) {
+    	userId = (String) session.getAttribute("userId"); 
+    	
+    } else if (session.getAttribute("userNick") != null) {
+    	userNick = (String) session.getAttribute("userNick");
     }
+
 
     %> 
 <!DOCTYPE html>
@@ -30,16 +52,16 @@
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
-  <link href="resources/assets/vendor/aos/aos.css" rel="stylesheet">
-  <link href="resources/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="resources/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="resources/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="resources/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="resources/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-  <link href="resources/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="resources/vendor/aos/aos.css" rel="stylesheet">
+  <link href="resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="resources/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="resources/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="resources/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="resources/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="resources/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
   <!-- Template Main CSS File -->
-  <link href="resources/assets/css/style.css" rel="stylesheet">
+  <link href="resources/css/style.css" rel="stylesheet">
 
   <!-- =======================================================
   * Template Name: Arsha - v4.3.0
@@ -72,7 +94,7 @@
 <!--           <li><a class="nav-link scrollto" href="#team">Team</a></li> -->
 <!--           <li><a class="nav-link scrollto" href="#contact">Contact</a></li> -->
            <%
-    	if (id == null) {
+    	if (userId == null) {
     	
     		%>
           <li class="dropdown"><a href="#"><span>Get online</span> <i class="bi bi-chevron-down"></i></a>
@@ -81,7 +103,8 @@
               <li><a href="join">회원가입</a></li>
             </ul>
           </li>
-        <% } else {  if (name.equals("코코딩")) { %>
+        <% } else {  %>
+        <%	if (admin.equals("admin") ) { %>
           <li class="dropdown"><a href="#"><span>Get online</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
               <li><a href="badComment">신고글 관리페이지</a></li>
@@ -91,7 +114,7 @@
           <% } else {// else안에 if %>
           <li class="dropdown"><a href="#"><span>Get online</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
-              <li><a href="myPage"><%=name%> 페이지</a></li>
+              <li><a href="myPage"><%=userNick%> 페이지</a></li>
               <li><a href="logoutAction">로그아웃</a></li>
             </ul>
           </li>
@@ -357,44 +380,35 @@
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
   <!-- Vendor JS Files -->
-  <script src="resources/assets/vendor/aos/aos.js"></script>
+  <script src="resources/vendor/aos/aos.js"></script>
 <!--   <script src="resources/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script> -->
-  <script src="resources/assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="resources/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="resources/assets/vendor/php-email-form/validate.js"></script>
-  <script src="resources/assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="resources/assets/vendor/waypoints/noframework.waypoints.js"></script>
+  <script src="resources/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="resources/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="resources/vendor/php-email-form/validate.js"></script>
+  <script src="resources/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="resources/vendor/waypoints/noframework.waypoints.js"></script>
 
   <!-- Template Main JS File -->
-  <script src="resources/assets/js/main.js"></script>
+  <script src="resources/js/main.js"></script>
 
 </body>
-<!-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js" ></script> -->
-<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js"></script> -->
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js" ></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js" ></script>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <script type="text/javascript">
 
-const itemsPerPage = 5; // 페이지당 아이템 수
-var currentPage = 1; // 현재 페이지
+const itemsPerPage = 5; 
+var currentPage = 1; 
 const data = Array.from(document.querySelectorAll('#accordionFlushExample .accordion-item')); // 화면에 있는 데이터 배열
-const totalPages = Math.ceil(data.length / itemsPerPage); // 총 페이지 수
-
-console.log("data : "+data)
-console.log("totalPages : "+totalPages)
-
-
+const totalPages = Math.ceil(data.length / itemsPerPage); 
 
 function showPage(page) {
   const startIndex = (page - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
 
-  console.log("startIndex : "+startIndex)
-  console.log("endIndex : "+endIndex)
   
-  // 현재 페이지에 해당하는 데이터를 화면에 표시
+  
   data.forEach(function(item, index) {
     if (index >= startIndex && index < endIndex) {
       item.style.display = 'block';
@@ -420,7 +434,7 @@ function renderPagination() {
   });
 }
 
-	// 초기 페이지 및 페이지네이션 렌더링
+	
 	showPage(currentPage);
 	renderPagination();
 
