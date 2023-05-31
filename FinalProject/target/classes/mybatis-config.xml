@@ -4,17 +4,15 @@
   "https://mybatis.org/dtd/mybatis-3-config.dtd">
   
   <configuration>
-  
   	<typeAliases>
   	
-		<typeAlias type="com.human.java.domain.QnAVO" alias="qna"/>
 		<typeAlias alias="admin" type="com.human.java.domain.AdminVO"/>
+		<typeAlias type="com.human.java.domain.MemberVO" alias="Member"/>
+		<typeAlias type="com.human.java.domain.BootcampVO" alias="bootcamp"/>
+		<typeAlias type="com.human.java.domain.Company_infoVO" alias="company_info"/>
+		<typeAlias type="com.human.java.domain.AdminVO" alias="admin"/>
 		
   	</typeAliases>
-  	
-  	
-  	
-	
   </configuration>
   
   

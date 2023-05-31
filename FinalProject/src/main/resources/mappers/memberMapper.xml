@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="member">
+
+	<!-- 일반로그인 -->
+	<select id="memberlogin" resultType="Member"> SELECT 'b' as loginFG,
+		userid, password FROM bootcamp WHERE userid = #{userid} AND password =
+		#{password}
+		UNION ALL SELECT 'c', userid, password FROM COMPANY_INFO
+		WHERE userid =
+		#{userid}
+		AND password = #{password} UNION ALL SELECT
+		'm', userid, password FROM
+		MEMBER
+		WHERE userid = #{userid} AND password
+		= #{password} UNION ALL SELECT 'A',
+		userid, password FROM ADMIN WHERE
+		userid = #{userid} AND password =
+		#{password}
+	</select>
+
+	<!-- 아이디찾기 -->
+	<select id="memberIdSearch" resultType="Member"> SELECT userid FROM
+		member WHERE name = #{name} AND tel = #{tel}
+	</select>
+
+	<!-- 비밀번호 찾기 -->
+	<select id="memberPwCheck" parameterType="Member" resultType="Member">
+		SELECT password
+		FROM member
+		WHERE userid = #{userid} AND email = #{email}
+	</select>
+
+
+	<update id="memberPwUpdate" parameterType="Member">
+		UPDATE member
+		SET
+		password = #{password}
+		WHERE
+		name = #{name}
+		AND userid = #{userid}
+		AND
+		email = #{email}
+	</update>
+
+	<!-- 회원정보 수정 -->
+	<update id="membermodify" parameterType="Member">
+		<!-- 일반회원 수정 -->
+		UPDATE member SET
+		userid=#{userid},
+		name = #{name},
+		nickname =
+		#{nickname},
+		email = #{email},
+		password = #{password},
+		tel = #{tel},
+		birth =#{birth},
+		interests = #{interests},
+		gender = #{gender},
+		location =
+		#{location},
+		position = #{position},
+		academy = #{academy},
+		employed =
+		#{employed}
+		WHERE
+		userid = #{userid}
+	</update>
+
+
+	<!-- 회원탈퇴 -->
+	<delete id="deletemember">
+		delete from member
+		where userid = #{userid} and
+		password = #{password}
+	</delete>
+
+	<!-- 학생정보 찾기 -->
+	<select id="selectMember" parameterType="String"
+		resultType="Member">
+		SELECT * FROM member
+		WHERE userid=#{value}
+	</select>
+
+
+	<!-- 학생 회원가입 -->
+	<insert id="insertmember" parameterType="Member">
+		INSERT INTO
+		member(userid, name, nickname, email, password, tel, birth,
+		interests,
+		gender, location, position,
+		academy,
+		employed)
+		VALUES(#{userid},#{name},#{nickname},#{email},#{password},#{tel},
+		#{birth}, #{interests}, #{gender},
+		#{location}, #{position},
+		#{academy}, #{employed})
+	</insert>
+
+	<!-- 아이디 중복검사 -->
+	<select id="idCheck" parameterType="String" resultType="int">
+		SELECT
+		COUNT(*) FROM (
+		SELECT userid FROM member
+		UNION ALL
+		SELECT userid FROM
+		bootcamp
+		UNION ALL
+		SELECT userid FROM company_info
+		UNION ALL
+		SELECT userid
+		FROM admin
+		) combined
+		WHERE userid = #{userid}
+	</select>
+
+
+
+	<!-- 비밀번호체크 -->
+	<select id="pwCheck" resultType="int" parameterType="String">
+		SELECT
+		COUNT(*)
+		FROM member
+		WHERE userid = #{userid} AND password = #{password}
+	</select>
+
+
+	<!-- 회원탈퇴 -->
+	<delete id="memberDelete">
+		DELETE FROM member
+		WHERE userid = #{userid}
+		AND
+		password = #{password}
+	</delete>
+
+	<!-- 비밀번호 메일인증 -->
+	<select id="findByEmail" parameterType="String"
+		resultType="Member">
+		SELECT * FROM member WHERE email = #{email}
+	</select>
+
+</mapper>

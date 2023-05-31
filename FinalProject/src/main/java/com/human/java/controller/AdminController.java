@@ -1,10 +1,8 @@
 package com.human.java.controller;
 
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
-import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,12 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-//import com.fasterxml.jackson.annotation.JsonAlias;
-import com.human.java.dao.AdminDAO;
-import com.human.java.dao.AdminDaoImpl;
-import com.human.java.domain.*;
+import com.human.java.domain.AdminVO;
 import com.human.java.service.AdminService;
-import com.human.java.service.AdminServiceImpl;
 
 // java를 효율적이로 코딩하기 위해 필요한 구조가 mvc 디자인 패턴
 // M odel : 자바를 이용해서 db에 연결하는 과정에 대한 파일들, 로직
@@ -115,7 +109,7 @@ public class AdminController {
 		if( ( vo.getPageTotalCount() % vo.getTotalCountPageGroup() ) > 0) {
 			vo.setTotalCountGroup(vo.getTotalCountGroup()+1);
 			
-		}
+		} 
 				
 		model.addAttribute("list", aList);
 		model.addAttribute("totalCountGroup",vo.getTotalCountGroup());

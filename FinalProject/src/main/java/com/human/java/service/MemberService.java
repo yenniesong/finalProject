@@ -1,25 +1,24 @@
-package com.human.java.dao;
+package com.human.java.service;
 
-import com.human.java.domain.AdminVO;
 import com.human.java.domain.BootcampVO;
 import com.human.java.domain.Company_infoVO;
 import com.human.java.domain.MemberVO;
 
-public interface MemberDAO {
+public interface MemberService {
 
 	// 일반회원가입 -- mapper에 있는 id와 같게
-	public void insertmember(MemberVO membervo) throws Exception;
+	public void insertmember(MemberVO memberVO) throws Exception;
 
 	// 학원회원가입 -- mapper에 있는 id와 같게
-	public void insertBootcamp(BootcampVO bootcampvo) throws Exception;
+	public void insertBootcamp(BootcampVO bootcampVO) throws Exception;
 
 	// 기업회원가입 -- mapper에 있는 id와 같게
-	public void insertCompanyInfo(Company_infoVO companyvo) throws Exception;
+	public void insertCompanyInfo(Company_infoVO companyVO) throws Exception;
 
-	// 일반 로그인
+	// 로그인
 	public MemberVO memberlogin(MemberVO memberVO) throws Exception;
 
-	// 중복확인
+	// 아이디 중복확인
 	public int idCheck(String userid) throws Exception;
 
 	// 마이페이지 멤버
